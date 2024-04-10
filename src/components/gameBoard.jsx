@@ -28,16 +28,24 @@ export default function GameBoard() {
     // event handler for card clicks,
     const handleCardClick = (index) => {
         console.log('click');
+        console.log(cards[index]);
+        //check if card was touched before
+        if (cards[index].touched) {
+            gameOver();
+        }
         // marks card as touched.
         const updatedCards = [...cards];
         updatedCards[index].touched = true;
+        console.log(updatedCards[index]);
         setCards(updatedCards);
 
         // shuffles array
         const shuffledCards = shuffleArray(updatedCards);
         setCards(shuffledCards);
     };
-
+    const gameOver = () => {
+        console.log('game over');
+    };
     // function using fisher yates shuffle algorithmn for shuffling the array (thanks internet)
     const shuffleArray = (array) => {
         const newArray = [...array];
