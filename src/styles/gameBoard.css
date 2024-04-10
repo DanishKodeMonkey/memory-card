@@ -6,3 +6,14 @@
     align-items: center;
     
 }
+
+@media screen and (max-width:500px){
+  
+  .game-board{
+    width: 60%;
+    grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+  }
+  .card{
+    max-width: 20vw;
+  }
+}

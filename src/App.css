@@ -50,6 +50,7 @@ ol:before{
 }
 
 .app{
+  font-size: clamp(8px, 1.5vw, 15px);
   display: flex;
   flex-direction: column;
   gap:10px;
@@ -57,7 +58,14 @@ max-height: 100vh;
 
 }
 header{
+  
   background-color: #888;
+  h1{
+    font-size: clamp(12px, 2.5vw, 30px);
+  }
+  h2{
+    font-size: clamp(8px, 1.5vw, 20px);
+  }
 }
 main{
   display: flex;
@@ -95,12 +103,17 @@ width: 50%;
 padding: 5px;
 }
 .gameBoard-container{
-  width: 55vw;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+  width: clamp(500px, 55vw, 850px);
+  padding: 20px;
 }
 
 
 footer{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
   background-color: #444;
   >.footer-contents>p{margin: 0;}
 }
