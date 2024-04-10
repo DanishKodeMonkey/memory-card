@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './App.css';
 import GameBoard from './components/gameBoard';
 import ScoreBoard from './components/ScoreBoard';
+import Header from './components/header';
+import Footer from './components/footer';
 
 function App() {
     const [score, setScore] = useState(0);
@@ -27,16 +29,43 @@ function App() {
     }
     return (
         <div className='app'>
-            <ScoreBoard
-                score={score}
-                highScore={highScore}
-            />
-            <GameBoard
-                score={score}
-                setScore={setScore}
-                gameOver={gameOver}
-                onGameOver={handleGameOver}
-            />
+            <header>
+                <Header />
+            </header>
+            <main>
+                <div className='game-container'>
+                    <div className='rules-and-scoreboard-container'>
+                        <div className='rules-container'>
+                            <ol aria-label='game rules'>
+                                <li>Click on a funny HTTP cat card</li>
+                                <li>
+                                    The cards will shuffle, click another card,
+                                    without clicking a previously clicked card
+                                </li>
+                                <li>
+                                    Repeat the process until you either win or
+                                    lose
+                                </li>
+                            </ol>
+                        </div>
+                        <ScoreBoard
+                            score={score}
+                            highScore={highScore}
+                        />
+                    </div>
+                    <div className='gameBoard-container'>
+                        <GameBoard
+                            score={score}
+                            setScore={setScore}
+                            gameOver={gameOver}
+                            onGameOver={handleGameOver}
+                        />
+                    </div>
+                </div>
+            </main>
+            <footer>
+                <Footer />
+            </footer>
         </div>
     );
 }

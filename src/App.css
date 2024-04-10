@@ -1,7 +1,5 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
   width: 100vw;
 }
@@ -40,4 +38,69 @@
 
 .read-the-docs {
   color: #888;
+}
+
+/* custom */
+/* Method of displaying a aria label as title on list, thanks internet */
+ol:before{
+  content:attr(aria-label);
+  font-size: 120%;
+  font-weight: bold;
+  margin-left: -15px;
+}
+
+.app{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+max-height: 100vh;
+
+}
+header{
+  background-color: #888;
+}
+main{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+
+}
+.game-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80vw;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  gap: 10px;
+
+
+}
+.rules-and-scoreboard-container{
+ display: flex;
+ align-items: center;
+ justify-content: space-around;
+ border-bottom: 1px solid #ccc;
+
+}
+.rules-container{
+  border-right:1px solid #ccc;
+width: 50%;
+padding: 5px;
+}
+.scoreboard{
+width: 50%;
+padding: 5px;
+}
+.gameBoard-container{
+  width: 55vw;
+  padding: 10px;
+}
+
+
+footer{
+  background-color: #444;
+  >.footer-contents>p{margin: 0;}
 }
