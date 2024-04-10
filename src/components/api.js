@@ -18,10 +18,9 @@ export async function fetchCatImages() {
             const code = validStatusCodes[randomIndex];
             // Ensure statscode has not already been taken.
             if (!statusCodes.includes(code)) {
-                console.log('pushing ' + code + ' to array...');
                 statusCodes.push(code);
             } else {
-                console.log(code, ' already exists');
+                console.log(code, ' already exists, retrying...');
             }
         }
         // return final list of random statusCodes
