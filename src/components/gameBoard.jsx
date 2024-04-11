@@ -53,6 +53,13 @@ export default function GameBoard({ score, setScore, onGameOver, newGame }) {
         const shuffledCards = shuffleArray(updatedCards);
         // and update state with copy of state array
         setCards(shuffledCards);
+
+        // win state, reset with new cards if all cards are touched.
+        const allCardsTouched = shuffledCards.every((card) => card.touched);
+        if (allCardsTouched) {
+            /* if all cards have been touched, reset. */
+            startNewGame();
+        }
     };
 
     // function using fisher yates shuffle algorithmn for shuffling the array (thanks internet)
