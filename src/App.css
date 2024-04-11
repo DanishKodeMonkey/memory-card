@@ -54,7 +54,7 @@ ol:before{
   display: flex;
   flex-direction: column;
   gap:10px;
-max-height: 100vh;
+max-height: 100%;
 
 }
 header{
