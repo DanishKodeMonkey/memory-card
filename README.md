@@ -20,4 +20,8 @@ It was a great practice in the use of some of reacts most powerful tools, and a 
 
 ## Try it out!
 
-Give it a shot here, see how high you can go!
+[Give it a shot here, see how high you can go!](https://memory-card-6v5.pages.dev/)
+
+### A screenshot of the project
+
+![Screenshot of the game](./public/Screenshot_20240411_114310.png)
