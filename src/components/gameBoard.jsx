@@ -3,39 +3,40 @@ import { fetchCatImages } from './api';
 import Card from './card';
 import '../styles/gameBoard.css';
 
-export default function GameBoard({ score, setScore, gameOver, onGameOver }) {
+export default function GameBoard({ score, setScore, onGameOver, newGame }) {
     // Manage cards state
     const [cards, setCards] = useState([]);
 
-    // Handle fetching cute cat pictures
+    // Initialize game on component mount
     useEffect(() => {
-        // get cat.http images
-        const fetchData = async () => {
-            try {
-                const catImageUrls = await fetchCatImages(); // api.js
-                const newCards = catImageUrls.map((imageUrl) => ({
-                    imageUrl,
-                    touched: false,
-                }));
-                // add cards to state
-                setCards(newCards);
-            } catch (error) {
-                console.error('Error fetching cat images:', error);
-            }
-        };
+        startNewGame(); // Call the async function inside useEffect
 
-        fetchData(); // Call the async function inside useEffect
         // dependency, trigger once on mount.
     }, []);
 
-    //handle gameOver event in this component
+    // Initialise new game on state change
     useEffect(() => {
-        if (gameOver) {
-            // clear game board when game is over
-            setCards([]);
+        if (newGame) {
+            startNewGame(); // Call the async function inside useEffect
         }
-        // dependency: trigger this effect when this changes
-    }, [gameOver]);
+        // dependency, trigger on state change.
+    }, [newGame]);
+
+    const startNewGame = async () => {
+        // get cat.http images
+        try {
+            const catImageUrls = await fetchCatImages(); // api.js
+            // assign cat images to cards
+            const newCards = catImageUrls.map((imageUrl) => ({
+                imageUrl,
+                touched: false,
+            }));
+            // add cards to state
+            setCards(newCards);
+        } catch (error) {
+            console.error('Error fetching cat images:', error);
+        }
+    };
 
     // event handler for card clicks,
     const handleCardClick = (index) => {

@@ -4,6 +4,7 @@ import GameBoard from './components/gameBoard';
 import ScoreBoard from './components/ScoreBoard';
 import Header from './components/header';
 import Footer from './components/footer';
+import Modal from './components/modal';
 
 function App() {
     const [score, setScore] = useState(0);
@@ -11,8 +12,11 @@ function App() {
         localStorage.getItem('highScore') || 0
     );
     const [gameOver, setGameOver] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const [newGame, setNewGame] = useState(0);
 
     const handleGameOver = () => {
+        console.log('game over bro...');
         setGameOver(true);
         if (score > highScore) {
             try {
@@ -22,11 +26,14 @@ function App() {
                 console.error('Error updating high score: ', error);
             }
         }
+        setModalOpen(true);
         // add logic to clear gameBoard (via props) and display score modal (TODO)
     };
-    if (gameOver) {
-        console.log('Game over man... game over!');
-    }
+    const handleTryAgain = () => {
+        setScore(0);
+        setGameOver(false);
+        setNewGame((newGame) => newGame + 1);
+    };
     return (
         <div className='app'>
             <header>
@@ -55,9 +62,9 @@ function App() {
                     </div>
                     <div className='gameBoard-container'>
                         <GameBoard
+                            newGame={newGame}
                             score={score}
                             setScore={setScore}
-                            gameOver={gameOver}
                             onGameOver={handleGameOver}
                         />
                     </div>
@@ -66,6 +73,15 @@ function App() {
             <footer>
                 <Footer />
             </footer>
+            {/* Renders gameOver modal when gameOver is true */}
+            {gameOver && (
+                <Modal
+                    isOpen={modalOpen}
+                    score={score}
+                    highScore={highScore}
+                    onTryAgain={handleTryAgain}
+                />
+            )}
         </div>
     );
 }
